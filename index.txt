@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <title>The Bridge Volley – Franco-American Pathway</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#002654">
+  <link rel="icon" href="data:image/svg+xml,...">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root{--f-blue:#002654;--f-red:#E30613;}
+    .font-title{font-family:'Barlow Condensed',sans-serif}
+    body.dark{background:#111827;color:#fff}
+    .radar-area{fill:rgba(0,38,84,.2);stroke:#002654;stroke-width:2}
+    .radar-point{fill:#E30613;stroke:#fff;stroke-width:2;cursor:pointer}
+    .radar-grid{fill:none;stroke:#e5e7eb}.dark .radar-grid{stroke:#4b5563}
+    .modal{background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+  </style>
+</head>
+<body class="font-sans bg-gray-50 dark:bg-gray-900 transition-colors">
+<!-- HEADER -->
+<header class="sticky top-0 z-50 shadow-md bg-white dark:bg-gray-800">
+  <div class="h-2 bg-gradient-to-r from-[#002654] via-white to-[#E30613]"></div>
+  <nav class="flex items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center space-x-3">
+      <img src="logo-bridge.jpg" alt="Logo" class="h-10 w-auto rounded-full">
+      <h1 class="text-2xl font-title text-[#002654] dark:text-white">The Bridge Volley</h1>
+    </a>
+    <div class="hidden md:flex space-x-6 font-semibold"><a href="#pathway">Pathway</a><a href="#coaching">Coaching</a><a href="#coacheye">CoachEye</a><a href="#clubs">Club</a></div>
+    <button id="authBtn" class="px-4 py-2 border rounded text-sm font-bold hover:bg-gray-100 dark:hover:bg-gray-700">Se connecter</button>
+  </nav>
+</header>
+
+<!-- AUTH MODAL -->
+<div id="authModal" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+  <div class="bg-white dark:bg-gray-800 p-8 rounded-xl w-full max-w-sm mx-4">
+    <h2 id="authTitle" class="text-xl font-bold mb-4 text-center">Créer un compte</h2>
+    <form id="authForm">
+      <input type="email" id="email" placeholder="Email" required class="w-full mb-4 px-3 py-2 border rounded">
+      <input type="password" id="password" placeholder="Mot de passe" required class="w-full mb-4 px-3 py-2 border rounded">
+      <button type="submit" class="w-full bg-[#E30613] text-white font-bold py-2 rounded">Valider</button>
+    </form>
+    <p id="switchForm" class="text-sm text-center mt-3 cursor-pointer text-blue-600">Déjà un compte ? Se connecter</p>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="bg-[#002654] text-white text-center py-32">
+  <h2 class="text-5xl font-title mb-6">BUILD YOUR BRIDGE</h2>
+  <p class="text-xl max-w-2xl mx-auto mb-8">Du lycée américain au pro français – seul programme structuré.</p>
+  <div class="flex justify-center gap-4"><a href="#pathway" class="bg-[#E30613] hover:bg-red-700 px-6 py-3 rounded font-bold">Player Pathway</a><a href="#coaching" class="bg-white text-[#002654] px-6 py-3 rounded font-bold">Club Services</a></div>
+</section>
+
+<!-- 3-STEP PATHWAY -->
+<section id="pathway" class="py-20">
+  <h3 class="text-3xl font-title text-center mb-12">LE PARCOURS EN 3 ÉTAPES</h3>
+  <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-xl transition">
+      <i data-lucide="compass" class="w-12 h-12 mb-4 text-[#002654]"></i>
+      <h4 class="text-2xl font-bold mb-3">1. Discovery</h4>
+      <ul class="list-disc list-inside space-y-2"><li>Free assessment</li><li>Vérification d'éligibilité au Programme "The Bridge"</li><li>Roadmap personnalisée</li></ul>
+    </div>
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-xl transition">
+      <i data-lucide="plane" class="w-12 h-12 mb-4 text-[#002654]"></i>
+      <h4 class="text-2xl font-bold mb-3">2. France Integration</h4>
+      <ul class="list-disc list-inside space-y-2"><li>CFCP placement</li><li>Visa & housing support</li><li>Academic pairing</li></ul>
+    </div>
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-xl transition">
+      <i data-lucide="trophy" class="w-12 h-12 mb-4 text-[#E30613]"></i>
+      <h4 class="text-2xl font-bold mb-3">3. Pro Transition</h4>
+      <ul class="list-disc list-inside space-y-2"><li>Agent representation</li><li>EU contracts</li><li>NCAA return pathway</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- COACHING RADAR -->
+<section id="coaching" class="py-20 bg-gray-100 dark:bg-gray-800">
+  <h3 class="text-3xl font-title text-center mb-8">ÉVALUATION COACHING</h3>
+  <div id="lockedMessage" class="text-center mb-4 text-red-600 font-bold hidden">Veuillez vous connecter pour accéder aux questionnaires.</div>
+  <div id="coachingContent" class="max-w-4xl mx-auto grid lg:grid-cols-2 gap-8 px-6 hidden">
+    <div class="flex-center">
+      <svg viewBox="0 0 320 320" class="w-72 h-72"><g class="radar-grid"><circle cx="160" cy="160" r="50"/><circle cx="160" cy="160" r="100"/><circle cx="160" cy="160" r="150"/></g>
+        <g class="radar-axes"><line x1="160" y1="10" x2="160" y2="310"/><line x1="10" y1="160" x2="310" y2="160"/><line x1="35" y1="35" x2="285" y2="285"/></g>
+        <polygon id="radarArea" class="radar-area" points="160,60 260,110 260,210 160,260 60,210 60,110"/>
+        <circle id="p0" cx="160" cy="60" r="5" class="radar-point"/><circle id="p1" cx="260" cy="110" r="5" class="radar-point"/><circle id="p2" cx="260" cy="210" r="5" class="radar-point"/><circle id="p3" cx="160" cy="260" r="5" class="radar-point"/><circle id="p4" cx="60" cy="210" r="5" class="radar-point"/><circle id="p5" cx="60" cy="110" r="5" class="radar-point"/>
+        <text x="160" y="5" class="text-xs fill-current">Physique</text><text x="305" y="110" class="text-xs fill-current">Mental</text><text x="305" y="210" class="text-xs fill-current">Tactique</text><text x="160" y="315" class="text-xs fill-current">Technique</text><text x="15" y="210" class="text-xs fill-current">Nutrition</text><text x="15" y="110" class="text-xs fill-current">Moteur</text>
+      </svg>
+    </div>
+    <div class="space-y-4">
+      <div><label class="block font-bold">🏋️ Préparation Physique</label><input type="range" min="1" max="10" value="7" class="w-full slider" data-d="0"><span id="v0">7/10</span></div>
+      <div><label class="block font-bold">🧠 Préparation Mentale</label><input type="range" min="1" max="10" value="6" class="w-full slider" data-d="1"><span id="v1">6/10</span></div>
+      <div><label class="block font-bold">🎯 Coaching Tactique</label><input type="range" min="1" max="10" value="6" class="w-full slider" data-d="2"><span id="v2">6/10</span></div>
+      <div><label class="block font-bold">⚡ Coaching Technique</label><input type="range" min="1" max="10" value="8" class="w-full slider" data-d="3"><span id="v3">8/10</span></div>
+      <div><label class="block font-bold">🥗 Coaching Nutrition</label><input type="range" min="1" max="10" value="5" class="w-full slider" data-d="4"><span id="v4">5/10</span></div>
+      <div><label class="block font-bold">🏃 Profil Moteur</label><input type="range" min="1" max="10" value="6" class="w-full slider" data-d="5"><span id="v5">6/10</span></div>
+      <a href="#coacheye" class="w-full bg-[#E30613] hover:bg-red-700 text-white font-bold py-3 rounded text-center block">Réserver ma séance 30 €</a>
+    </div>
+  </div>
+</section>
+
+<!-- COACHEYE CADRE -->
+<section id="coacheye" class="py-20">
+  <h3 class="text-3xl font-title text-center mb-8">CoachEye – Coaching Cadre</h3>
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 space-y-6">
+      <h4 class="text-2xl font-bold text-center">📹 Analyse vidéo personnalisée</h4>
+      <input type="file" accept="video/*" class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2">
+      <textarea placeholder="Qui souhaitez-vous faire observer ? Quelles sont vos attentes ?" rows="4" class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 resize-none"></textarea>
+      <div class="flex justify-between items-center">
+        <span class="font-bold text-lg">30 min – 30 €</span>
+        <button class="bg-[#E30613] hover:bg-red-700 text-white font-bold px-6 py-2 rounded">Réserver</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLUB SERVICES -->
+<section id="clubs" class="py-20 bg-gray-100 dark:bg-gray-800">
+  <h3 class="text-3xl font-title text-center mb-8">SERVICES CLUBS</h3>
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-lg transition"><h4 class="font-bold mb-2">Audit Club – €1 500</h4><p>Évaluation structure & recommandations</p></div>
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-lg transition"><h4 class="font-bold mb-2">Recrutement International – €3 000/an</h4><p>Accès talents US + intégration</p></div>
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-lg transition"><h4 class="font-bold mb-2">Sponsoring – €2 500</h4><p>Stratégie & partenariats franco-américains</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white py-8 text-center">
+  <p>&copy; 2025 The Bridge Volley – Tous droits réservés</p>
+  <p>Contact : <a href="mailto:contact@thebridgevb.com" class="underline">contact@thebridgevb.com</a></p>
+</footer>
+
+<script>
+/* AUTH */
+const authBtn=document.getElementById('authBtn');
+const authModal=document.getElementById('authModal');
+const authForm=document.getElementById('authForm');
+const lockedMessage=document.getElementById('lockedMessage');
+const coachingContent=document.getElementById('coachingContent');
+if(localStorage.getItem('bridgeUser')){unlock();}
+function unlock(){authBtn.textContent='Connecté';authBtn.disabled=true;lockedMessage.classList.add('hidden');coachingContent.classList.remove('hidden');}
+authBtn.addEventListener('click',()=>authModal.classList.remove('hidden'));
+authForm.addEventListener('submit',e=>{e.preventDefault();localStorage.setItem('bridgeUser',JSON.stringify({email:email.value}));unlock();authModal.classList.add('hidden');});
+
+/* RADAR */
+const dims=[{a:0,v:7},{a:60,v:6},{a:120,v:6},{a:180,v:8},{a:240,v:5},{a:300,v:6}],c=160,r=150;
+function upd(){let pts='';dims.forEach((d,i)=>{const rad=(d.v/10)*r,x=c+rad*Math.cos((d.a-90)*Math.PI/180),y=c+rad*Math.sin((d.a-90)*Math.PI/180);pts+=`${x},${y} `;document.getElementById(`p${i}`).setAttribute('cx',x);document.getElementById(`p${i}`).setAttribute('cy',y);});document.getElementById('radarArea').setAttribute('points',pts.trim());}
+document.querySelectorAll('.slider').forEach(s=>s.addEventListener('input',e=>{const d=+e.target.dataset.d;dims[d].v=+e.target.value;document.getElementById(`v${d}`).textContent=dims[d].v+'/10';upd();}));upd();
+document.getElementById('darkBtn').addEventListener('click',()=>document.documentElement.classList.toggle('dark'));
+lucide.createIcons();
+</script>
+</body>
+</html>
